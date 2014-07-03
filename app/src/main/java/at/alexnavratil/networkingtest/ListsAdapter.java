@@ -1,5 +1,6 @@
 package at.alexnavratil.networkingtest;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -35,7 +36,6 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
 
         /**
          * Animation
-         * This function is a little bit buggy when you enable energy saver in L Preview
          */
         v.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -47,13 +47,20 @@ public class ListsAdapter extends RecyclerView.Adapter<ListsAdapter.ViewHolder> 
                     ValueAnimator anim = ViewAnimationUtils.createCircularReveal(tv, (int)motionEvent.getX(), (int)motionEvent.getY(), 0, v.getWidth());
                     anim.setDuration(400);
                     anim.start();
-                    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    anim.addListener(new Animator.AnimatorListener() {
                         @Override
-                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            if(valueAnimator.getCurrentPlayTime()>=valueAnimator.getDuration()) {
-                                tv.setBackgroundColor(Color.WHITE);
-                            }
+                        public void onAnimationStart(Animator animator) {
                         }
+
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            tv.setBackgroundColor(Color.WHITE);
+                        }
+
+                        @Override
+                        public void onAnimationCancel(Animator animator) {}
+                        @Override
+                        public void onAnimationRepeat(Animator animator) {}
                     });
                 }
                 return false;
