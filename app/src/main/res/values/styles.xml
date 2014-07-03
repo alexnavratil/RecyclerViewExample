@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:colorPrimary">@android:color/white</item>
+        <item name="android:colorPrimaryDark">@android:color/darker_gray</item>
+        <item name="android:statusBarColor">@android:color/darker_gray</item>
+        <item name="android:navigationBarColor">@android:color/darker_gray</item>
+    </style>
+
+</resources>
